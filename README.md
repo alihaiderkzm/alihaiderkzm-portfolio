@@ -54,6 +54,7 @@ This is my personal developer portfolio — a single-page site built from scratc
 alihaiderkzm-portfolio/
 ├── index.html              # Main site (structure, styles, animations)
 ├── login.html               # Admin login for managing projects
+├── admin.hrml               # Admin Page for managing projects
 ├── js/
 │   ├── supabase-config.js   # Supabase client setup
 │   └── projects.js          # Fetch, render & manage the projects grid
