@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — alihaider.kzm</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="admin-body">
+
+  <div id="sky"></div>
+  <canvas id="netCanvas"></canvas>
+  <div id="scrim"></div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><span class="logo-bracket">[</span>ali<span class="logo-bracket">haider</span>.kzm<span
+          class="logo-bracket">]</span></div>
+      <button class="sidebar-close" id="sidebarClose">✕</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link active" data-page="dashboard" data-title="Dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="9" />
+          <rect x="14" y="3" width="7" height="5" />
+          <rect x="14" y="12" width="7" height="9" />
+          <rect x="3" y="16" width="7" height="5" />
+        </svg>
+        Dashboard
+      </a>
+      <a class="sidebar-link" data-page="projects" data-title="Projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </svg>
+        Projects
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">A</div>
+        <div>
+          <div class="sidebar-username" id="sidebarUsername">alihaider.kzm</div>
+          <div class="sidebar-role">Administrator</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Log Out
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <button class="topbar-menu" id="topbarMenu"><span></span><span></span><span></span></button>
+      <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      <div class="topbar-actions">
+        <div class="topbar-badge"><span class="badge-dot-sm"></span> Live</div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <section class="admin-page active" id="page-dashboard">
+      <div class="admin-welcome">
+        <h2>Welcome back, <span>Ali</span> 👋</h2>
+        <p>Here's what's happening with your portfolio right now.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-icon pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg></div>
+          <div>
+            <div class="stat-card-value" id="statTotal">0</div>
+            <div class="stat-card-label">Total Projects</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg></div>
+          <div>
+            <div class="stat-card-value" id="statWeb">0</div>
+            <div class="stat-card-label">Web Projects</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg></div>
+          <div>
+            <div class="stat-card-value" id="statMc">0</div>
+            <div class="stat-card-label">Minecraft Projects</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg></div>
+          <div>
+            <div class="stat-card-value" id="statPy">0</div>
+            <div class="stat-card-label">Python Projects</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-actions">
+        <h3>Quick Actions</h3>
+        <div class="quick-actions">
+          <button class="quick-btn" onclick="openAddModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add Project
+          </button>
+          <a class="quick-btn" href="index.html#projects" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            View Live Site
+          </a>
+        </div>
+      </div>
+
+      <div class="dashboard-recent">
+        <h3>Recent Projects</h3>
+        <div id="recentList"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS PAGE -->
+    <section class="admin-page" id="page-projects">
+      <div class="page-header">
+        <div>
+          <h2>Projects</h2>
+          <p>Add, edit, or remove the projects shown on your public portfolio.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openAddModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Add Project
+        </button>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="table-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search projects..." />
+        </div>
+        <div class="table-count" id="tableCount">0 projects</div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Tag</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Link</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <div class="table-empty" id="tableEmpty" style="display:none;">
+          <div style="font-size:32px;margin-bottom:10px;">📦</div>
+          <p>No projects found.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ADD/EDIT PROJECT MODAL -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 id="pmTitle">Add Project</h3>
+        <button class="modal-x" onclick="closeProjectModal()">✕</button>
+      </div>
+      <form id="projectForm">
+        <div class="admin-modal-body">
+          <input type="hidden" id="fId" />
+          <div class="form-group">
+            <label class="form-label" for="fTitle">Title <span class="required">*</span></label>
+            <input type="text" id="fTitle" class="form-input" placeholder="e.g. Server Economy Plugin" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fCategory">Category</label>
+              <select id="fCategory" class="form-select">
+                <option value="web">Web</option>
+                <option value="minecraft">Minecraft</option>
+                <option value="python">Python</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fTag">Tag Label</label>
+              <input type="text" id="fTag" class="form-input" placeholder="e.g. Frontend" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fImage">Image URL</label>
+            <input type="text" id="fImage" class="form-input" placeholder="https://..." />
+            <span class="form-hint">Leave blank to show a category icon instead.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fLink">Project Link</label>
+            <input type="text" id="fLink" class="form-input" placeholder="https://..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fDesc">Description</label>
+            <textarea id="fDesc" class="form-textarea" placeholder="Short description of the project..."></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-ghost" onclick="closeProjectModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM MODAL -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="confirm-card">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+      </div>
+      <h3>Delete this project?</h3>
+      <p id="confirmText">This action can't be undone.</p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" onclick="closeConfirm()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/bg-network.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "alihaiderkzm-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build-projects.mjs"
+  }
+}

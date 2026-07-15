@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — alihaider.kzm</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="auth-body">
+
+  <div id="sky"></div>
+  <canvas id="netCanvas"></canvas>
+  <div id="scrim"></div>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <h1 class="auth-logo-text"><span class="logo-bracket">[</span>ali<span
+            class="logo-bracket">haider</span>.kzm<span class="logo-bracket">]</span></h1>
+        <p>Admin Portal</p>
+      </div>
+
+      <div class="auth-alert" id="authAlert" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+        <span id="authAlertMsg">Invalid credentials.</span>
+      </div>
+
+      <div class="auth-form">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 6-10 7L2 6" />
+            </svg>
+            <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com"
+              autocomplete="username" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPass">Password</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <input type="password" id="loginPass" class="form-input" placeholder="Enter password"
+              autocomplete="current-password" />
+            <button class="toggle-pass" id="togglePass" type="button" aria-label="Toggle password">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" id="loginBtn">
+          <span id="loginBtnText">Sign In</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        <a href="index.html">← Back to Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/bg-network.js"></script>
+  <script>
+    (async () => {
+      if (await isAdminAuthenticated()) {
+        window.location.href = 'admin.html';
+      }
+    })();
+
+    const loginBtn = document.getElementById('loginBtn');
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPass = document.getElementById('loginPass');
+    const authAlert = document.getElementById('authAlert');
+    const authAlertMsg = document.getElementById('authAlertMsg');
+    const togglePass = document.getElementById('togglePass');
+
+    togglePass.addEventListener('click', () => {
+      loginPass.type = loginPass.type === 'password' ? 'text' : 'password';
+    });
+
+    function showAlert(msg) {
+      authAlertMsg.textContent = msg;
+      authAlert.style.display = 'flex';
+      authAlert.classList.add('shake');
+      setTimeout(() => authAlert.classList.remove('shake'), 500);
+    }
+
+    async function attemptLogin() {
+      const email = loginEmail.value.trim();
+      const pass = loginPass.value;
+
+      if (!email || !pass) { showAlert('Please fill in all fields.'); return; }
+
+      loginBtn.disabled = true;
+      document.getElementById('loginBtnText').textContent = 'Authenticating...';
+
+      const result = await adminLogin(email, pass);
+      if (result.success) {
+        window.location.href = 'admin.html';
+      } else {
+        showAlert(result.message || 'Invalid email or password.');
+        loginBtn.disabled = false;
+        document.getElementById('loginBtnText').textContent = 'Sign In';
+        loginPass.value = '';
+      }
+    }
+
+    loginBtn.addEventListener('click', attemptLogin);
+    loginPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+    loginEmail.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginPass.focus(); });
+  </script>
+</body>
+
+</html>
