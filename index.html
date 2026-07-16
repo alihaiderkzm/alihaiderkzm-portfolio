@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
   <title>Ali Haider Kazim (alihaider.kzm) — Portfolio</title>
   <meta name="description"
     content="Ali Haider Kazim, known online as alihaider.kzm — Full Stack Developer, Frontend Web Developer, Python tool builder and Minecraft Plugin/Mod & Server Developer based in Faisalabad, Pakistan.">
@@ -13,32 +12,36 @@
   <meta name="author" content="Ali Haider Kazim">
   <link rel="canonical" href="https://alihaiderkzm.netlify.app/">
   <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="5OlS9KG3RIqyxouZOTQ93K_nWWloS7B_tzqTkj5jKk4" />
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ali Haider Kazim (alihaider.kzm) — Full Stack & Minecraft Developer">
   <meta property="og:description"
     content="Full Stack Developer, Frontend Web Developer, Python tool builder and Minecraft Plugin/Mod & Server Developer. 4+ years building on the web.">
-  <meta property="og:image" content="https://i.ibb.co/KcfsXMzk/Screenshot-2026-07-12-193245.png">
+  <meta property="og:image" content="https://alihaiderkzm.netlify.app/photo.webp">
   <meta property="og:url" content="https://alihaiderkzm.netlify.app/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ali Haider Kazim (alihaider.kzm)">
   <meta name="twitter:description" content="Full Stack Developer & Minecraft Developer from Faisalabad, Pakistan.">
-  <meta name="twitter:image" content="https://i.ibb.co/KcfsXMzk/Screenshot-2026-07-12-193245.png">
+  <meta name="twitter:image" content="https://alihaiderkzm.netlify.app/photo.webp">
   <link rel="icon" href="/favicon.ico">
   <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ali Haider Kazim",
-  "alternateName": ["alihaider.kzm", "Ali Haider KZM"],
-  "url": "https://alihaiderkzm.netlify.app/",
-  "image": "https://i.ibb.co/KcfsXMzk/Screenshot-2026-07-12-193245.png",
-  "jobTitle": "Full Stack Developer",
-  "address": {"@type": "PostalAddress", "addressLocality": "Faisalabad", "addressCountry": "PK"},
-  "email": "mailto:alihumai777@gmail.com",
-  "sameAs": ["https://instagram.com/alihaider.kzm", "https://github.com/alihaiderkzm"]
-  }
-  </script>
+    {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ali Haider Kazim",
+    "alternateName": ["alihaider.kzm", "Ali Haider KZM"],
+    "url": "https://alihaiderkzm.netlify.app/",
+    "image": "https://i.ibb.co/KcfsXMzk/Screenshot-2026-07-12-193245.png",
+    "jobTitle": "Full Stack Developer",
+    "address": {"@type": "PostalAddress", "addressLocality": "Faisalabad", "addressCountry": "PK"},
+    "email": "mailto:alihumai777@gmail.com",
+    "sameAs": ["https://instagram.com/alihaider.kzm", "https://github.com/alihaiderkzm"]
+    }
+    </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
@@ -232,17 +235,17 @@
       content: '';
       position: absolute;
       top: 0;
-      left: -60%;
+      left: 0;
       width: 40%;
       height: 100%;
       background: linear-gradient(120deg, transparent, rgba(218, 34, 255, .18), transparent);
-      transform: skewX(-20deg);
-      transition: left .6s ease;
+      transform: translateX(-160%) skewX(-20deg);
+      transition: transform .6s ease;
       pointer-events: none;
     }
 
     .card:hover::before {
-      left: 130%;
+      transform: translateX(260%) skewX(-20deg);
     }
 
     .card:hover {
@@ -297,14 +300,16 @@
       position: absolute;
       left: 0;
       bottom: -6px;
-      width: 0;
+      width: 100%;
       height: 1px;
       background: var(--pink);
-      transition: width .25s;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .25s ease;
     }
 
     .navlinks a:hover::after {
-      width: 100%;
+      transform: scaleX(1);
     }
 
     .nav-admin {
@@ -1097,8 +1102,8 @@
     }
 
     /* ===========================================
-       MOBILE RESPONSIVENESS OVERRIDES
-       =========================================== */
+        MOBILE RESPONSIVENESS OVERRIDES
+        =========================================== */
     @media(max-width:640px) {
 
       nav {
@@ -1347,7 +1352,8 @@
       <li><a href="#contact">Contact</a></li>
       <li><a class="nav-admin" href="login.html">Admin</a></li>
     </ul>
-    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Open navigation menu" aria-controls="navlinks"
+      aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 
   <section id="hero">
@@ -1409,7 +1415,8 @@
     <div class="aboutGrid">
       <div class="photoWrap reveal">
         <div class="photoCard" id="tiltCard">
-          <img src="https://i.ibb.co/P8f3fWV/Chat-GPT-Image-Jul-4-2026-01-34-12-PM.png" alt="Ali Haider Kazim">
+          <img src="photo.webp" alt="Ali Haider Kazim - Full Stack, Minecraft and python tools Developer"
+            loading="eager" fetchPriority="high">
         </div>
         <div class="photoBadge"><span class="dotlive"></span> Faisalabad, PK</div>
       </div>
@@ -1585,13 +1592,151 @@
     <div>Built with three.js & a lot of coffee ☕</div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module">
+    const heroSection = document.getElementById('hero');
+    const heroCanvas = document.getElementById('heroCanvas');
+    const heroVisual = document.querySelector('.hero-visual');
+    let hero3DInitialized = false;
+
+    async function initializeHero3D() {
+      if (hero3DInitialized || !heroCanvas || !heroVisual) return;
+      hero3DInitialized = true;
+
+      const {
+        WebGLRenderer,
+        Scene,
+        PerspectiveCamera,
+        Group,
+        TorusKnotGeometry,
+        IcosahedronGeometry,
+        OctahedronGeometry,
+        TorusGeometry,
+        Mesh,
+        MeshBasicMaterial,
+        Vector3
+      } = await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js');
+
+      const renderer = new WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+
+      function sizeCanvas() {
+        const w = heroVisual.clientWidth;
+        const h = heroVisual.clientHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+
+      const scene = new Scene();
+      const camera = new PerspectiveCamera(55, 1, 0.1, 100);
+      camera.position.set(0, 0, 13);
+
+      const group = new Group();
+      scene.add(group);
+
+      const shapes = [];
+
+      const coreGeo = new TorusKnotGeometry(2.1, 0.56, 150, 20);
+      const coreMat = new MeshBasicMaterial({ color: 0xB565F5, wireframe: true, transparent: true, opacity: 0.85 });
+      const core = new Mesh(coreGeo, coreMat);
+      group.add(core);
+
+      const companionDefs = [
+        { geo: new IcosahedronGeometry(0.8, 0), color: 0xD9A9FF, wire: true, orbitR: 3.8, orbitSpeed: 0.35, yOff: 1.0 },
+        { geo: new OctahedronGeometry(0.68, 0), color: 0x9733EE, wire: false, opacity: 0.85, orbitR: 3.5, orbitSpeed: -0.28, yOff: -1.1 },
+        { geo: new TorusGeometry(0.58, 0.18, 10, 24), color: 0x5B1FA8, wire: true, orbitR: 3.2, orbitSpeed: 0.22, yOff: 0.15 }
+      ];
+
+      companionDefs.forEach(def => {
+        const mat = new MeshBasicMaterial({ color: def.color, wireframe: def.wire, transparent: true, opacity: def.opacity || 0.8 });
+        const mesh = new Mesh(def.geo, mat);
+        mesh.userData.orbitR = def.orbitR;
+        mesh.userData.orbitSpeed = def.orbitSpeed;
+        mesh.userData.yOff = def.yOff;
+        mesh.userData.spin = Math.random() * 0.02 + 0.01;
+        mesh.userData.axis = new Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+        group.add(mesh);
+        shapes.push(mesh);
+      });
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let clock = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5);
+        mouseY = (e.clientY / window.innerHeight - 0.5);
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        clock += 0.01;
+        group.rotation.y += 0.0026;
+        group.rotation.x = Math.sin(clock * 0.3) * 0.15;
+        core.rotation.y -= 0.006;
+        core.rotation.x += 0.004;
+        core.scale.setScalar(1 + Math.sin(clock * 1.4) * 0.06);
+        shapes.forEach(m => {
+          m.rotateOnAxis(m.userData.axis, m.userData.spin);
+          const angle = clock * m.userData.orbitSpeed;
+          m.position.set(
+            Math.cos(angle) * m.userData.orbitR,
+            m.userData.yOff + Math.sin(clock * 0.6 + angle) * 0.4,
+            Math.sin(angle) * m.userData.orbitR
+          );
+        });
+        camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.04;
+        camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.04;
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+      }
+
+      sizeCanvas();
+      window.addEventListener('resize', sizeCanvas);
+
+      if (document.readyState === 'complete') {
+        setTimeout(animate, 1500);
+      } else {
+        window.addEventListener('load', () => setTimeout(animate, 1500), { once: true });
+      }
+    }
+
+    if (heroSection) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            heroObserver.disconnect();
+            initializeHero3D();
+          }
+        });
+      }, { rootMargin: '220px 0px' });
+
+      heroObserver.observe(heroSection);
+    } else {
+      initializeHero3D();
+    }
+  </script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
-    window.addEventListener('load', () => {
-      document.getElementById('loader').classList.add('hide');
-      playHero();
+    function showContentFallback() {
+      document.querySelectorAll('.reveal').forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+
+    window.addEventListener("load", () => {
+      document.getElementById("loader").classList.add("hide");
+
+      if (window.gsap && window.ScrollTrigger) {
+        initializeAnimations();
+        setTimeout(() => {
+          playHero();
+        }, 300);
+      } else {
+        showContentFallback();
+      }
     });
 
     /* ---- fix broken viewport scaling inside Instagram/Facebook/etc in-app browsers ---- */
@@ -1603,7 +1748,7 @@
         const reset = () => {
           vp.setAttribute('content', 'width=device-width, initial-scale=1.0');
           setTimeout(() => {
-            vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+            vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover');
           }, 60);
         };
         setTimeout(reset, 50);
@@ -1687,83 +1832,6 @@
 
 
 
-    const canvas = document.getElementById('heroCanvas');
-    const visualEl = document.querySelector('.hero-visual');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    function sizeCanvas() {
-      const w = visualEl.clientWidth, h = visualEl.clientHeight;
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    }
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-    camera.position.set(0, 0, 13);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const palette = [0x9733EE, 0xDA22FF, 0x7c1fd1, 0x7c1fd1];
-    const shapes = [];
-
-    // centerpiece: glowing torus-knot
-    const coreGeo = new THREE.TorusKnotGeometry(2.1, 0.56, 150, 20);
-    const coreMat = new THREE.MeshBasicMaterial({ color: 0xB565F5, wireframe: true, transparent: true, opacity: 0.85 });
-    const core = new THREE.Mesh(coreGeo, coreMat);
-    group.add(core);
-
-    // 3 orbiting companion shapes, kept close & contained so nothing flies off-frame
-    const companionDefs = [
-      { geo: new THREE.IcosahedronGeometry(0.8, 0), color: 0xD9A9FF, wire: true, orbitR: 3.8, orbitSpeed: 0.35, yOff: 1.0 },
-      { geo: new THREE.OctahedronGeometry(0.68, 0), color: 0x9733EE, wire: false, opacity: 0.85, orbitR: 3.5, orbitSpeed: -0.28, yOff: -1.1 },
-      { geo: new THREE.TorusGeometry(0.58, 0.18, 10, 24), color: 0x5B1FA8, wire: true, orbitR: 3.2, orbitSpeed: 0.22, yOff: 0.15 }
-    ];
-    companionDefs.forEach(def => {
-      const mat = new THREE.MeshBasicMaterial({ color: def.color, wireframe: def.wire, transparent: true, opacity: def.opacity || 0.8 });
-      const mesh = new THREE.Mesh(def.geo, mat);
-      mesh.userData.orbitR = def.orbitR;
-      mesh.userData.orbitSpeed = def.orbitSpeed;
-      mesh.userData.yOff = def.yOff;
-      mesh.userData.spin = Math.random() * 0.02 + 0.01;
-      mesh.userData.axis = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
-      group.add(mesh);
-      shapes.push(mesh);
-    });
-
-    let mouseX = 0, mouseY = 0, clock = 0;
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5);
-      mouseY = (e.clientY / window.innerHeight - 0.5);
-    });
-
-    function animate() {
-      requestAnimationFrame(animate);
-      clock += 0.01;
-      group.rotation.y += 0.0026;
-      group.rotation.x = Math.sin(clock * 0.3) * 0.15;
-      core.rotation.y -= 0.006;
-      core.rotation.x += 0.004;
-      core.scale.setScalar(1 + Math.sin(clock * 1.4) * 0.06);
-      shapes.forEach(m => {
-        m.rotateOnAxis(m.userData.axis, m.userData.spin);
-        const angle = clock * m.userData.orbitSpeed;
-        m.position.set(
-          Math.cos(angle) * m.userData.orbitR,
-          m.userData.yOff + Math.sin(clock * 0.6 + angle) * 0.4,
-          Math.sin(angle) * m.userData.orbitR
-        );
-      });
-      camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.04;
-      camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.04;
-      camera.lookAt(scene.position);
-      renderer.render(scene, camera);
-    }
-    sizeCanvas();
-    animate();
-
-    window.addEventListener('resize', sizeCanvas);
 
     /* ---- typed rotating roles ---- */
     const roles = ['Full Stack Developer', 'Frontend Web Developer', 'Python Tools Coder', 'Minecraft Plugin & Server Developer'];
@@ -1822,45 +1890,62 @@
     }
 
 
-    gsap.registerPlugin(ScrollTrigger);
-    document.querySelectorAll('.reveal').forEach((el) => {
-      gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
-    });
-    // staggered reveals for grids
-    [['.cardsGrid', '.card'], ['.contactGrid', '.cItem']].forEach(([wrap, item]) => {
-      const el = document.querySelector(wrap);
-      if (!el) return;
-      gsap.set(el.querySelectorAll(item), { opacity: 0, y: 30 });
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%', once: true,
-        onEnter: () => gsap.to(el.querySelectorAll(item), { opacity: 1, y: 0, duration: .7, stagger: .09, ease: 'power3.out' })
-      });
-    });
-    document.querySelectorAll('.bar-fill').forEach(bar => {
-      ScrollTrigger.create({ trigger: bar, start: 'top 90%', once: true, onEnter: () => { bar.style.width = bar.dataset.w + '%'; } });
-    });
-    // subtle parallax on section tags/titles
-    document.querySelectorAll('section').forEach(sec => {
-      const tag = sec.querySelector('.tag');
-      if (!tag) return;
-      gsap.to(tag, { y: -24, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
+    function initializeAnimations() {
+      if (!window.gsap || !window.ScrollTrigger) {
+        showContentFallback();
+        return;
+      }
 
-    const tilt = document.getElementById('tiltCard');
-    tilt.addEventListener('mousemove', (e) => {
-      const r = tilt.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      tilt.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
-      tilt.style.boxShadow = `${-x * 30}px ${-y * 30 + 20}px 70px -20px rgba(151,51,238,.55)`;
-    });
-    tilt.addEventListener('mouseleave', () => { tilt.style.transform = 'rotateY(0) rotateX(0)'; tilt.style.boxShadow = ''; });
+      const { gsap, ScrollTrigger } = window;
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+      });
+      // staggered reveals for grids
+      [['.cardsGrid', '.card'], ['.contactGrid', '.cItem']].forEach(([wrap, item]) => {
+        const el = document.querySelector(wrap);
+        if (!el) return;
+        gsap.set(el.querySelectorAll(item), { opacity: 0, y: 30 });
+        ScrollTrigger.create({
+          trigger: el, start: 'top 85%', once: true,
+          onEnter: () => gsap.to(el.querySelectorAll(item), { opacity: 1, y: 0, duration: .7, stagger: .09, ease: 'power3.out' })
+        });
+      });
+      document.querySelectorAll('.bar-fill').forEach(bar => {
+        ScrollTrigger.create({ trigger: bar, start: 'top 90%', once: true, onEnter: () => { bar.style.width = bar.dataset.w + '%'; } });
+      });
+      // subtle parallax on section tags/titles
+      document.querySelectorAll('section').forEach(sec => {
+        const tag = sec.querySelector('.tag');
+        if (!tag) return;
+        gsap.to(tag, { y: -24, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+
+      const tilt = document.getElementById('tiltCard');
+      if (tilt) {
+        tilt.addEventListener('mousemove', (e) => {
+          const r = tilt.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          tilt.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
+          tilt.style.boxShadow = `${-x * 30}px ${-y * 30 + 20}px 70px -20px rgba(151,51,238,.55)`;
+        });
+        tilt.addEventListener('mouseleave', () => { tilt.style.transform = 'rotateY(0) rotateX(0)'; tilt.style.boxShadow = ''; });
+      }
+    }
 
     const burger = document.getElementById('burger');
     const navlinks = document.getElementById('navlinks');
-    burger.addEventListener('click', () => {
-      navlinks.style.display = navlinks.style.display === 'flex' ? 'none' : 'flex';
-    });
+    if (burger && navlinks) {
+      const toggleMenu = () => {
+        const willShow = navlinks.style.display !== 'flex';
+        navlinks.style.display = willShow ? 'flex' : 'none';
+        burger.setAttribute('aria-expanded', String(willShow));
+        burger.setAttribute('aria-label', willShow ? 'Close navigation menu' : 'Open navigation menu');
+      };
+
+      burger.addEventListener('click', toggleMenu);
+    }
     if (window.innerWidth < 780) {
       document.querySelector('.burger').style.display = 'flex';
       navlinks.style.cssText = 'display:none;position:fixed;top:64px;left:0;right:0;background:#0d0620ee;flex-direction:column;padding:20px;gap:20px;border-bottom:1px solid #3a2465;';
@@ -1882,19 +1967,18 @@
       const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
       progressBar.style.width = pct + '%';
     }
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
+
 
     /* ---- magnetic buttons ---- */
-    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && window.gsap) {
       document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
           const r = btn.getBoundingClientRect();
           const x = (e.clientX - r.left - r.width / 2) * 0.3;
           const y = (e.clientY - r.top - r.height / 2) * 0.3;
-          gsap.to(btn, { x, y, duration: .3, ease: 'power2.out' });
+          window.gsap.to(btn, { x, y, duration: .3, ease: 'power2.out' });
         });
-        btn.addEventListener('mouseleave', () => { gsap.to(btn, { x: 0, y: 0, duration: .4, ease: 'elastic.out(1,0.4)' }); });
+        btn.addEventListener('mouseleave', () => { window.gsap.to(btn, { x: 0, y: 0, duration: .4, ease: 'elastic.out(1,0.4)' }); });
       });
     }
   </script>
@@ -1902,10 +1986,10 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/projects.js"></script>
   <!-- ========================================
-     LINK TRACKER (v2 — tracks ALL visits, normal + custom ?ref=)
-     Paste this on BOTH pixelforged.netlify.app and alihaiderkzm.netlify.app
-     Replace the OLD tracker script with this one.
-     ======================================== -->
+      LINK TRACKER (v2 — tracks ALL visits, normal + custom ?ref=)
+      Paste this on BOTH pixelforged.netlify.app and alihaiderkzm.netlify.app
+      Replace the OLD tracker script with this one.
+      ======================================== -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     (function () {
